@@ -37,25 +37,27 @@ const botaoIncluirTarefa = document.querySelector('#incluir-nova-tarefa');
 const inputTarefa = document.querySelector('#nova-tarefa-nome');
 const inputCategoria = document.querySelector('#nova-tarefa-categoria');
 
-//ao pressionar enter, adicionar uma nova tarefa na página
-inputTarefa.addEventListener('keyup', function (event) {
-    if (event.key === 'Enter') {
-        console
-        eventoAdicionaTarefa();
-    }
-});
-
-//ao clicar no botão #incluir-nova-tarefa, adicionar uma nova tarefa na página
-botaoIncluirTarefa.addEventListener('click', eventoAdicionaTarefa());
-
 function eventoAdicionaTarefa() {
     if (inputTarefa.value != '') {
         const tarefa = new Tarefa(inputTarefa.value, inputCategoria.value, false);
         tarefa.adicionaNaPagina(tarefa);
         inputTarefa.value = '';
         inputTarefa.focus();
+        console.log("Tarefa adicionada com sucesso!");
     }
 };
+
+//ao pressionar enter, adicionar uma nova tarefa na página
+inputTarefa.addEventListener('keyup', function (event) {
+    if (event.key === 'Enter') {        
+        eventoAdicionaTarefa();
+    }
+});
+
+//ao clicar no botão #incluir-nova-tarefa, adicionar uma nova tarefa na página
+botaoIncluirTarefa.addEventListener('click', function () {
+    eventoAdicionaTarefa();
+});
 
 //ao usar select #filtro-de-categoria, filtrar por categoria
 const filtroCategoria = document.querySelector('#filtro-de-categoria');
