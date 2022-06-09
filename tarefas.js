@@ -16,6 +16,13 @@ class Tarefa {
 
         if (containerEl.realizada) {
             tarefaEl.classList.add('marcado');
+        }else{
+            //Faça com que um click em uma .item-tarefa coloque/remova a classe marcado e a
+            //defina como realizada (true/false).
+            tarefaEl.addEventListener('click', function () {
+                if (!tarefaEl.classList.contains('retido-no-filtro'))
+                    tarefaEl.classList.toggle('marcado');
+            });
         }
         listaTarefasEl.appendChild(tarefaEl);
     }
@@ -42,8 +49,7 @@ function eventoAdicionaTarefa() {
         const tarefa = new Tarefa(inputTarefa.value, inputCategoria.value, false);
         tarefa.adicionaNaPagina(tarefa);
         inputTarefa.value = '';
-        inputTarefa.focus();
-        console.log("Tarefa adicionada com sucesso!");
+        inputTarefa.focus();        
     }
 };
 
@@ -76,15 +82,5 @@ filtroCategoria.addEventListener('change', function () {
         if (categoriaSelecionada == '') {
             tarefaEl.classList.remove('retido-no-filtro');
         }
-    });
-});
-
-//Faça com que um click em uma .item-tarefa coloque/remova a classe marcado e a 
-//defina como realizada (true/false).
-const tarefasEl = document.querySelectorAll('.item-tarefa');
-tarefasEl.forEach(function (tarefaEl) {
-    tarefaEl.addEventListener('click', function () {
-        if (!tarefaEl.classList.contains('retido-no-filtro'))
-            tarefaEl.classList.toggle('marcado');
     });
 });
